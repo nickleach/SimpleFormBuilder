@@ -1,3 +1,19 @@
+var person = {
+  name : "Nick",
+  location: "Atlanta"
+}
+
+var templateString = $('#personFormatting').text();
+
+var templateFunction = _.template(templateString);
+
+var finalHTML = templateFunction(person);
+console.log(finalHTML);
+
+
+
+
+
 var form1 = [
   { type: 'text', label: 'First Name' },
   { type: 'text', label: 'Last Name' },
@@ -9,29 +25,16 @@ var form1 = [
 
 function formBuilder (data) {
 
-  var formHTML = '<form>';
+  var formHTML = $('#formElement').text();
 
-  data.forEach( function (elem) {
+  var formFunction = _.template(formHTML);
 
-    if (elem.type === 'submit') {
+  data.forEach ( function (elem){
+    $('#registrationForm').append(formFunction(elem));
 
-      formHTML += '<input type="' + elem.type + '" value="' + elem.label + '" />';
 
-    } else {
-
-      formHTML += '<label>' + elem.label + '</label>';
-      formHTML += '<input type="' + elem.type + '" />';
-      formHTML += '</br></br>';  
-
-    }
 
   });
-
-  formHTML += '</form>';
-
-  console.log(formHTML);
-
-  $('#registrationForm').html(formHTML);
 
 }
 
